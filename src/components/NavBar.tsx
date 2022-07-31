@@ -20,7 +20,6 @@ const NavBar = observer(() => {
               <Button variant="outline-light">Admin</Button>
               <Button style={{marginLeft: '8px'}} onClick={() => user.setIsAuth(false)} variant="outline-light">exit</Button>
               </Container>
-              
             :
             <Button onClick={() => user.setIsAuth(true)} variant="outline-light">LogIn</Button>
           }

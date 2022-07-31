@@ -9,10 +9,10 @@ type User = {
 
 export default class UserStore{
     private _isAuth: boolean;
-    private _user: {};
+    private _user: User;
     constructor(){
         this._isAuth = false //_ - unchangeble
-        this._user = {}
+        this._user = {id: 1, email: "sas", password: "pasw", role: "ADMIN"}
         makeAutoObservable(this)
     }
 
