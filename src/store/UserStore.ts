@@ -1,5 +1,12 @@
 import { makeAutoObservable } from "mobx";
 
+type User = {
+    id: number
+    email: string
+    password: string
+    role: string
+}
+
 export default class UserStore{
     private _isAuth: boolean;
     private _user: {};
