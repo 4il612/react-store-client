@@ -17,7 +17,8 @@ const NavBar = observer(() => {
         <Nav className="ml-auto" style={{color: "white"}}>
           {user.isAuth ? 
               <Container>
-              <Button variant="outline-light">Admin</Button>
+              {user.user.role === "ADMIN" && <Button variant="outline-light">Admin</Button>} 
+              
               <Button style={{marginLeft: '8px'}} onClick={() => user.setIsAuth(false)} variant="outline-light">exit</Button>
               </Container>
             :
