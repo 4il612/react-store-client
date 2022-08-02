@@ -17,10 +17,15 @@ export default class DeviceStore{
     private _types: TypeBrand[]
     private _brands: TypeBrand[]
     private _devices: Device[]
+    private _selectedType: TypeBrand
     constructor(){
         this._types = [
             {id: 1, name: "смартфоны"},
-            {id: 2, name: "наушники"}
+            {id: 2, name: "наушники"},
+            {id: 3, name: "клавиатуры"},
+            {id: 4, name: "мониторы"},
+            {id: 5, name: "ноутбуки"},
+            {id: 6, name: "видеокарты"}
         ]
         this._brands = [
             {id: 1, name: "смартфоны"},
@@ -30,6 +35,7 @@ export default class DeviceStore{
             {id: 1, name: "Iphone 12 pro", price: 25000, rating: 5, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
             {id: 2, name: "Iphone 12", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
         ]
+        this._selectedType = {id: 0, name: ""}
         makeAutoObservable(this)
     }
 
@@ -45,6 +51,10 @@ export default class DeviceStore{
         this._devices = devices
     }
 
+    setSelectedType(type: TypeBrand): void{
+        this._selectedType = type
+    }
+
     get types(): TypeBrand[]{
         return this._types
     }
@@ -55,5 +65,9 @@ export default class DeviceStore{
 
     get devices(): Device[]{
         return this._devices
+    }
+
+    get selectedType(): TypeBrand{
+        return this._selectedType
     }
 }
