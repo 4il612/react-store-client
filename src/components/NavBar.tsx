@@ -12,6 +12,14 @@ import { useNavigate } from "react-router-dom";
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const navigate = useNavigate()
+
+    const logOut = () => {
+      user.setUser({})
+      user.setIsAuth(false)
+      localStorage.clear()
+      navigate(SHOP_ROUTE)
+    }
+
     return (
       <Navbar bg="dark" variant="dark">
         <Container>
@@ -29,8 +37,7 @@ const NavBar = observer(() => {
                 <Button 
                   style={{marginLeft: '8px'}} 
                   onClick={() => {
-                    user.setIsAuth(false)
-                    navigate(LOGIN_ROUTE)
+                    logOut()
                   }} 
                   variant="outline-light"
                 >
@@ -38,7 +45,7 @@ const NavBar = observer(() => {
                 </Button>
               </Container>
             :
-            <Button onClick={() => user.setIsAuth(true)} variant="outline-light">LogIn</Button>
+            <Button onClick={() => navigate(LOGIN_ROUTE)} variant="outline-light">LogIn</Button>
           }
           
         </Nav>
