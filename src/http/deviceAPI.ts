@@ -2,7 +2,6 @@ import jwtDecode from 'jwt-decode'
 import { $authHost, $host } from './index'
 
 type TypeBrand = {
-    id: number
     name: string
 }
 
