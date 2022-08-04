@@ -28,7 +28,10 @@ const NavBar = observer(() => {
                   </Button>} 
                 <Button 
                   style={{marginLeft: '8px'}} 
-                  onClick={() => navigate(LOGIN_ROUTE)} 
+                  onClick={() => {
+                    user.setIsAuth(false)
+                    navigate(LOGIN_ROUTE)
+                  }} 
                   variant="outline-light"
                 >
                   exit

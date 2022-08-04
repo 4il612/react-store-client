@@ -1,10 +1,28 @@
+import { useContext, useState } from "react"
 import { Card, Container, Form, Button } from "react-bootstrap"
 import { NavLink, useLocation } from "react-router-dom"
+import { Context } from "../index"
+import { login, registration } from "../http/userAPI"
 import { LOGIN_ROUTE, REGISTER_ROUTE } from "../utils/consts"
+import { observer } from "mobx-react-lite"
 
-const Auth = () => {
+const Auth = observer(() => {
+    const {user} = useContext(Context)
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const checkIn = async () => {
+        let data
+        if (isLogin){
+            data = await login(email, password)
+        } else{
+            data = await registration(email, password)
+        }
+        user.setUser(data)
+        user.setIsAuth(true)
+    }
     
     return (
         <Container
@@ -20,16 +38,26 @@ const Auth = () => {
                     <Form.Control
                         className="mt-3"
                         placeholder="email"
+                        value={email}
+                        onChange={
+                            e => setEmail(e.target.value)
+                        }
                     />
                     <Form.Control
                         className="mt-3"
                         placeholder="password"
+                        value={password}
+                        onChange={
+                            e => setPassword(e.target.value)
+                        }
+                        type='password'
                     />
                 </Form>
                 <Button 
                     className="mt-3 align-self-center"
                     style={{minWidth: 120}}
                     variant="outline-success"
+                    onClick={() => checkIn()}
                 >
                     {isLogin ? 'Войти' : 'Регистрация'}
                 </Button>
@@ -46,6 +74,6 @@ const Auth = () => {
             </Card>
         </Container>
     )
-}
+})
 
 export default Auth

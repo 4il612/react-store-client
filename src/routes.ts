@@ -7,35 +7,35 @@ import { ADMIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE, S
 
 type Route = {
     path: string
-    component: () => JSX.Element
+    Component: () => JSX.Element
 }
 
 export const authRoutes: Route[] = [
     {
         path: ADMIN_ROUTE,
-        component: Admin 
+        Component: Admin 
     },
     {
         path: BASKET_ROUTE,
-        component: Basket 
+        Component: Basket 
     }
 ]
 
 export const publicRoutes: Route[] = [
     {
         path: SHOP_ROUTE,
-        component: Shop 
+        Component: Shop 
     },
     {
         path: LOGIN_ROUTE,
-        component: Auth 
+        Component: Auth 
     },
     {
         path: REGISTER_ROUTE,
-        component: Auth
+        Component: Auth
     },
     {
         path: DEVICE_ROUTE + '/:id',
-        component: DevicePage
+        Component: DevicePage
     }
 ]
