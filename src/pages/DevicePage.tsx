@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react"
 import { Col, Container, Image, Row, Card, Button } from "react-bootstrap"
 import like from '../assets/like.png'
+import { useParams } from "react-router-dom"
+import { fetchOneDevice } from "../http/deviceAPI"
 
 type Device = {
     id: number
@@ -7,6 +10,7 @@ type Device = {
     price: number
     rating: number
     img: string
+    info: Description[]
 }
 
 type Description = {
@@ -16,24 +20,19 @@ type Description = {
 }
 
 const DevicePage = () => {
-    const device: Device = {id: 1, name: "Iphone 12 pro", price: 25000, rating: 5, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"}
-    const description: Description[] = [
-        {
-            id: 1, title: 'Оперативная память', description: '5 ГБ'
-        },
-        {
-            id: 2, title: 'Камера', description: '12 МП'
-        },
-        {
-            id: 3, title: 'Аккумулятор', description: '4000 мА/ч'
-        }
-    ]
+    const [device, setDevice] = useState<Device>({id: 0, name: '', price: 0, rating: 0, img: 'asa', info: []})
+    const {id} = useParams()
+
+    useEffect(() => {
+        fetchOneDevice(Number(id))
+        .then(data => setDevice(data))
+    }, [])
 
     return (
         <Container className="mt-3">
             <Row>
                 <Col md={4}>
-                    <Image width={300} height={300} src={device.img}/>
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img}/>
                 </Col>
                 <Col className="d-flex flex-column align-items-center" md={4}>
                     <h2>{device.name}</h2>
@@ -71,7 +70,7 @@ const DevicePage = () => {
             </Row>
             <Row className="d-flex flex-column m-3">
                 <h1>Характеристики</h1>
-                {description.map((info, index) => 
+                {device.info.map((info, index) => 
                     <Row 
                         key={info.id}
                         style={{

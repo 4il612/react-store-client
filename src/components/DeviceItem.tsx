@@ -23,7 +23,7 @@ const DeviceItem = ({id=0, name, price=0, rating=0, img=''}: Device) => {
                 }}
                 className="p-2"
             >
-                <Image width={140} height={140} src={img}/>
+                <Image width={140} height={140} src={process.env.REACT_APP_API_URL + img}/>
                 <div className="text-black-50 mt-2 d-flex justify-content-between align-items-center">
                     <div>Apple</div>
                     <div className="d-flex align-items-center">

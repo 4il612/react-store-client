@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios'
 import jwtDecode from 'jwt-decode'
 import { $authHost, $host } from './index'
 

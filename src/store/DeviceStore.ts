@@ -20,34 +20,9 @@ export default class DeviceStore{
     private _selectedType: TypeBrand
     private _selectedBrand: TypeBrand
     constructor(){
-        this._types = [
-            {id: 1, name: "смартфоны"},
-            {id: 2, name: "наушники"},
-            {id: 3, name: "клавиатуры"},
-            {id: 4, name: "мониторы"},
-            {id: 5, name: "ноутбуки"},
-            {id: 6, name: "видеокарты"}
-        ]
-        this._brands = [
-            {id: 1, name: "Apple"},
-            {id: 2, name: "Sony"},
-            {id: 3, name: "Asus"},
-            {id: 4, name: "Samsung"}
-        ]
-        this._devices = [
-            {id: 1, name: "Iphone 12 pro", price: 25000, rating: 5, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 2, name: "Iphone 12", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 3, name: "Iphone 11", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 4, name: "Iphone X", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 5, name: "Iphone 12 pro", price: 25000, rating: 5, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 6, name: "Iphone 12", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 7, name: "Iphone 11", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 8, name: "Iphone X", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 9, name: "Iphone 12 pro", price: 25000, rating: 5, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 10, name: "Iphone 12", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 11, name: "Iphone 11", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-            {id: 12, name: "Iphone X", price: 15000, rating: 4, img: "https://the-istore.ru/upload/iblock/7cc/7cc9085373c58a4b89ff51977843aba2.jpg"},
-        ]
+        this._types = []
+        this._brands = []
+        this._devices = []
         this._selectedType = {id: 0, name: ""}
         this._selectedBrand = {id: 0, name: ""}
         makeAutoObservable(this)
