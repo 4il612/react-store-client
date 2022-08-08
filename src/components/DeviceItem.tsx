@@ -15,12 +15,13 @@ const DeviceItem = ({id=0, name, price=0, rating=0, img=''}: Device) => {
     const navigate = useNavigate()
 
     return (
-        <Col md={3} className="mt-1 mb-2" onClick={() => navigate(DEVICE_ROUTE + '/' + id)}>
+        <Col md={2} className="mt-1 mb-2">
             <Card
                 style={{
                     width: 150,
                     cursor: 'pointer'
                 }}
+                onClick={() => navigate(DEVICE_ROUTE + '/' + id)}
                 className="p-2"
             >
                 <Image width={140} height={140} src={process.env.REACT_APP_API_URL + img}/>

@@ -17,6 +17,7 @@ const Shop = observer(() => {
         .then(data => device.setBrands(data))
         fetchDevices()
         .then(data => device.setDevices(data.rows))
+        .catch(() => {alert('no server connection')})
     }, [])
 
     return (
