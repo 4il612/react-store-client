@@ -22,18 +22,10 @@ const App = observer(() => {
     })
   }, [])
 
-  if (loading){
-    return (
-      <BrowserRouter>
-      <Navbar/>
-        <Spinner className='position-absolute top-50 start-50 translate-middle' animation={'grow'}/>
-      </BrowserRouter>
-    )
-  }
-
   return (
     <BrowserRouter>
       <Navbar/>
+      <Spinner hidden={!loading} className='position-absolute top-50 start-50 translate-middle' animation={'grow'}/>
       <AppRouter/>
     </BrowserRouter>
   );
