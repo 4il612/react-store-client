@@ -12,7 +12,7 @@ export default class UserStore{
     private _user: User;
     constructor(){
         this._isAuth = false //_ - unchangeble
-        this._user = {id: 1, email: "sas", password: "pasw", role: "ADMIN"}
+        this._user = {id: 1, email: "sas", password: "pasw", role: "user"}
         makeAutoObservable(this)
     }
 
