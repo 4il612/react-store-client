@@ -5,13 +5,11 @@ import { authRoutes, publicRoutes } from "../routes";
 import { SHOP_ROUTE } from "../utils/consts";
 
 const AppRouter = () => {
-    const {user, device} = useContext(Context)
-    console.log(user);
-    console.log(device)
+    const {user} = useContext(Context)
 
     return (
         <Routes>
-            {user.isAuth && authRoutes.map(({path, Component}) => {
+            {user.user.role === 'ADMIN' && authRoutes.map(({path, Component}) => {
                return <Route key={path} path={path} element={<Component/>} /> 
             }
             )}
