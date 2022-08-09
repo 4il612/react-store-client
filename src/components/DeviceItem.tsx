@@ -19,6 +19,7 @@ const DeviceItem = ({id=0, name, price=0, rating=0, img=''}: Device) => {
             <Card
                 style={{
                     width: 150,
+                    height: 240,
                     cursor: 'pointer'
                 }}
                 onClick={() => navigate(DEVICE_ROUTE + '/' + id)}
