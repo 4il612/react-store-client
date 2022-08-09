@@ -14,7 +14,7 @@ type Props = {
 type InfoItem = {
     title: string
     description: string
-    id: number
+    num: number
 }
 
 const CreateDevice = observer(({show, onHide}: Props) => {
@@ -25,12 +25,12 @@ const CreateDevice = observer(({show, onHide}: Props) => {
     const [info, setInfo] = useState<InfoItem[]>([])
   
     const addInfo = () => {
-        setInfo([...info, {title: '', description: '', id: Date.now()}])
+        setInfo([...info, {title: '', description: '', num: Date.now()}])
     }
 
-    const removeInfo = (id: number) => {
+    const removeInfo = (num: number) => {
         setInfo(info.filter(infoItem => 
-            infoItem.id !== id    
+            infoItem.num !== num    
         ))
     }
 
@@ -42,7 +42,7 @@ const CreateDevice = observer(({show, onHide}: Props) => {
 
     const changeInfo =  (key: string, value: string | number, num: number) => {
         setInfo(info.map(item => 
-            item.id === num ? {...item, [key]: value} : item
+            item.num === num ? {...item, [key]: value} : item
         ))
     }
 
@@ -53,7 +53,8 @@ const CreateDevice = observer(({show, onHide}: Props) => {
         formData.append('img', file as Blob)
         formData.append('brandId', `${device.selectedBrand.id}`)
         formData.append('typeId', `${device.selectedType.id}`)
-        // formData.append('info', JSON.stringify(info))
+        console.log(info)
+        formData.append('info', JSON.stringify(info))
         createDevice(formData).then(data => onHide())
     }
 
@@ -138,23 +139,23 @@ const CreateDevice = observer(({show, onHide}: Props) => {
                 </Button>
                 {
                     info.map(infoItem =>
-                        <Row className="mt-4" key={infoItem.id}>
+                        <Row className="mt-4" key={infoItem.num}>
                             <Col md={4}>
                                 <Form.Control
                                     value={infoItem.title}
-                                    onChange={(e) => changeInfo('title', e.target.value, infoItem.id)}
+                                    onChange={(e) => changeInfo('title', e.target.value, infoItem.num)}
                                     placeholder="Введите название свойства"
                                 />
                             </Col>
                             <Col md={4}>
                             <Form.Control
                                     value={infoItem.description}
-                                    onChange={(e) => changeInfo('description', e.target.value, infoItem.id)}
+                                    onChange={(e) => changeInfo('description', e.target.value, infoItem.num)}
                                     placeholder="Введите описание свойства"
                                 />
                             </Col>
                             <Col md={4}>
-                                <Button onClick={() => removeInfo(infoItem.id)} variant="outline-danger">
+                                <Button onClick={() => removeInfo(infoItem.num)} variant="outline-danger">
                                     Удалить
                                 </Button>
                             </Col>
