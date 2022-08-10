@@ -43,8 +43,8 @@ export const fetchDevices = async (typeId: number, brandId: number, page: number
         const {data} = await $host.get('api/device', {
             params: {
                 "brandId": brandId,
-                page,
-                limit
+                "page": page,
+                "limit": limit
             }
         })
         return data
@@ -53,9 +53,9 @@ export const fetchDevices = async (typeId: number, brandId: number, page: number
     if (brandId === 0 && typeId !== 0){
         const {data} = await $host.get('api/device', {
             params: {
-                typeId,
-                page,
-                limit
+                "typeId": typeId,
+                "page": page,
+                "limit": limit
             }
         })
         return data
@@ -64,17 +64,23 @@ export const fetchDevices = async (typeId: number, brandId: number, page: number
     if ((brandId !== 0) && (typeId !== 0)){
         const {data} = await $host.get('api/device', {
             params: {
-                typeId,
-                brandId,
-                page,
-                limit
+                "typeId": typeId,
+                "brandId": brandId,
+                "page": page,
+                "limit": limit
             }
         })
         return data
     }
     
-    console.log('ЗАПРОС ПРОШЕЛ ВСЕ ИФЫ')
-    const {data} = await $host.get('api/device')
+    const {data} = await $host.get('api/device', {
+        params:{
+            "page": page,
+            "limit": limit
+        }
+    })
+    console.log(data.rows);
+    
     return data
 }
 

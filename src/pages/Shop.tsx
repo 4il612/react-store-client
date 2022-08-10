@@ -14,15 +14,15 @@ const Shop = observer(() => {
     useEffect(() => {
         fetchTypes()
         .then(data => device.setTypes(data))
+        .catch(() => {alert('no server connection')})
         fetchBrands()
         .then(data => device.setBrands(data))
-        fetchDevices(0, 0, 1, 2)
+        fetchDevices(0, 0, device.page, device.limit)
         .then((data) => {
             device.setDevices(data.rows)
             device.setTotalCount(data.count)
         }
         )
-        .catch(() => {alert('no server connection')})
     }, [])
 
     useEffect(() => {
