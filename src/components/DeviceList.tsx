@@ -15,7 +15,8 @@ const DeviceList = observer(() => {
                 name={deviceItem.name}
                 price={deviceItem.price}
                 rating={deviceItem.rating}
-                img={deviceItem.img}/>    
+                img={deviceItem.img}
+                brand={device.brandName(deviceItem.brandId)}/> 
             )}
         </Row>
     )

@@ -9,9 +9,10 @@ type Device = {
     price: number
     rating: number
     img: string
+    brand: string
 }
 
-const DeviceItem = ({id=0, name, price=0, rating=0, img=''}: Device) => {
+const DeviceItem = ({id=0, name, price=0, rating=0, img='', brand='undifned'}: Device) => {
     const navigate = useNavigate()
 
     return (
@@ -27,7 +28,7 @@ const DeviceItem = ({id=0, name, price=0, rating=0, img=''}: Device) => {
             >
                 <Image width={140} height={140} src={process.env.REACT_APP_API_URL + img}/>
                 <div className="text-black-50 mt-2 d-flex justify-content-between align-items-center">
-                    <div>Apple</div>
+                    <div>{brand}</div>
                     <div className="d-flex align-items-center">
                         <div>{rating}</div>
                         <Image width={16} height={16} src={like}/>

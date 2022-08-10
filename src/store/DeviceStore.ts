@@ -11,6 +11,7 @@ type Device = {
     price: number
     rating: number
     img: string
+    brandId: number
 }
 
 export default class DeviceStore{
@@ -62,6 +63,13 @@ export default class DeviceStore{
     setSelectedBrand(brand: TypeBrand): void{
         this._page = 1
         this._selectedBrand = brand
+    }
+
+    brandName(id: number): string{
+        for (let brand of this._brands){
+            if (brand.id === id) return brand.name
+        }
+        return 'undefined'
     }
 
     get types(): TypeBrand[]{
