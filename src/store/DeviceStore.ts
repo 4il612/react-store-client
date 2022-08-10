@@ -26,10 +26,10 @@ export default class DeviceStore{
         this._types = []
         this._brands = []
         this._devices = []
-        this._selectedType = {id: 0, name: ""}
-        this._selectedBrand = {id: 0, name: ""}
+        this._selectedType = {id: 0, name: "all"}
+        this._selectedBrand = {id: 0, name: "all"}
         this._page = 1
-        this._limit = 3
+        this._limit = 2
         this._totalCount = 0
         makeAutoObservable(this)
     }
@@ -55,10 +55,12 @@ export default class DeviceStore{
     }
 
     setSelectedType(type: TypeBrand): void{
+        this._page = 1
         this._selectedType = type
     }
 
     setSelectedBrand(brand: TypeBrand): void{
+        this._page = 1
         this._selectedBrand = brand
     }
 

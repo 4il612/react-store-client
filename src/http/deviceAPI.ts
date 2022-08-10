@@ -39,15 +39,42 @@ export const createDevice = async (device: FormData) => {
 }
 
 export const fetchDevices = async (typeId: number, brandId: number, page: number, limit = 2) => {
-    const {data} = await $host.get('api/device', {
-        params: {
-            typeId,
-            brandId,
-            page,
-            limit
-        }
-    })
+    if (typeId === 0 && brandId !== 0){
+        const {data} = await $host.get('api/device', {
+            params: {
+                "brandId": brandId,
+                page,
+                limit
+            }
+        })
+        return data
+    }
 
+    if (brandId === 0 && typeId !== 0){
+        const {data} = await $host.get('api/device', {
+            params: {
+                typeId,
+                page,
+                limit
+            }
+        })
+        return data
+    }
+
+    if ((brandId !== 0) && (typeId !== 0)){
+        const {data} = await $host.get('api/device', {
+            params: {
+                typeId,
+                brandId,
+                page,
+                limit
+            }
+        })
+        return data
+    }
+    
+    console.log('ЗАПРОС ПРОШЕЛ ВСЕ ИФЫ')
+    const {data} = await $host.get('api/device')
     return data
 }
 
