@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { useContext, useEffect } from "react";
 import { Context } from "../index";
 import { fetchBrands, fetchDevices, fetchTypes } from "../http/deviceAPI";
+import Pages from "../components/Pages";
 
 const Shop = observer(() => {
     const {device} = useContext(Context)
@@ -15,10 +16,24 @@ const Shop = observer(() => {
         .then(data => device.setTypes(data))
         fetchBrands()
         .then(data => device.setBrands(data))
-        fetchDevices()
-        .then(data => device.setDevices(data.rows))
+        fetchDevices(1, 1, 1, 2)
+        .then((data) => {
+            device.setDevices(data.rows)
+            device.setTotalCount(data.count)
+        }
+        )
         .catch(() => {alert('no server connection')})
     }, [])
+
+    useEffect(() => {
+        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, device.limit)
+        .then((data) => {
+            device.setDevices(data.rows)
+            device.setTotalCount(data.count)
+        }
+        )
+        .catch(() => {alert('no server connection')})
+    }, [device.page, device.selectedType, device.selectedBrand])
 
     return (
         <Container>
@@ -29,6 +44,7 @@ const Shop = observer(() => {
                 <Col md={10}>
                     <BrandBar/>
                     <DeviceList/>
+                    {!!device.devices.length && <Pages/>}
                 </Col>
             </Row>
         </Container>

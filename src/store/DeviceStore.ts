@@ -19,12 +19,18 @@ export default class DeviceStore{
     private _devices: Device[]
     private _selectedType: TypeBrand
     private _selectedBrand: TypeBrand
+    private _page: number
+    private _totalCount: number
+    private _limit: number
     constructor(){
         this._types = []
         this._brands = []
         this._devices = []
         this._selectedType = {id: 0, name: ""}
         this._selectedBrand = {id: 0, name: ""}
+        this._page = 1
+        this._limit = 3
+        this._totalCount = 0
         makeAutoObservable(this)
     }
 
@@ -34,6 +40,14 @@ export default class DeviceStore{
 
     setBrands(brands: TypeBrand[]): void{
         this._brands = brands
+    }
+
+    setPage(page: number): void{
+        this._page = page
+    }
+
+    setTotalCount(totalCount: number): void{
+        this._totalCount = totalCount
     }
 
     setDevices(devices: Device[]): void{
@@ -66,5 +80,17 @@ export default class DeviceStore{
 
     get selectedBrand(): TypeBrand{
         return this._selectedBrand
+    }
+
+    get page(): number{
+        return this._page
+    }
+
+    get totalCount(): number{
+        return this._totalCount
+    }
+
+    get limit(): number{
+        return this._limit
     }
 }
